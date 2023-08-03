@@ -1,0 +1,52 @@
+{
+	"menus": [{
+			"menu0": [{
+					"type": "menu",
+					"text": "Таблица умножение.",
+					"menu_name": "menu2.0"
+				},
+				{
+					"type": "menu",
+					"text": "Математика. Подготовка к школе",
+					"menu_name": "menu3.0"
+				},
+				{
+					"type": "do",
+					"text": "Оставить отзыв",
+					"answer": "answer4.1"
+				}
+			]
+		},
+		{
+			"menu2.0": [{
+					"type": "reviewtu",
+					"text": "Получить бонус за отзыв",
+					"answer": "answer2.1"
+				},
+				{
+					"type": "text",
+					"text": "Видео по заполнению Таблицы Пифагора",
+					"answer": "answer2.2"
+				}
+			]
+		},
+		{
+			"menu3.0": [{
+					"type": "menu",
+					"text": "Домашние задания(начисление баллов, материалы к урокам)",
+					"menu_name": "menu3.1"
+				},
+				{
+					"type": "menu",
+					"text": "Технические вопросы",
+					"menu_name": "menu3.2"
+				},
+				{
+					"type": "menu",
+					"text": "Прочие вопросы",
+					"menu_name": "menu3.3"
+				}
+			]
+		}
+	]
+}

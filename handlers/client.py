@@ -171,7 +171,7 @@ async def command_start_handler(message: Message) -> None:
 
 
 
-@router.message(Command(commands=["отзыв", "otziv"]))
+@router.message(Command(commands=["сообщ", "msg"]))
 async def command_reviev_handler(message: Message) -> None:
     try:
         # регистрируем пользователя в базе
@@ -180,14 +180,14 @@ async def command_reviev_handler(message: Message) -> None:
 
         if len(message.text.split()) <= 1:
             await message.answer(
-                "Чтобы оставить отзыв или предложение напишите в данный чат: \n/отзыв [ваш отзыв] \n\n Пример: <pre>/отзыв пожалуйста публикуйте расписание мероприятий каждое утро. </pre> ",
+                "Чтобы оставить сообщение напишите в данный чат: \n/сообщ [ваше сообщение] \n\n Пример: <pre>/сообщ пожалуйста сделайте видео подробнее. </pre> ",
                 parse_mode="html")
             return
 
-        caption = f"Отзыв от {message.from_user.username} {message.from_user.first_name} {message.from_user.last_name} \n"
+        caption = f"Сообщение от {message.from_user.username} {message.from_user.first_name} {message.from_user.last_name} \n"
         await bot.send_message(config.Support_chat_id, caption + message.text[7:])
         await message.reply(
-            "Ваш отзыв получен. Спасибо за обратную связь. Отзыв не предполагает обратного ответа. ")
+            "Ваше сообщение получено. Обратный ответ не предполагается :). ")
         return
     except Exception as e:
         await create_bot.send_error_message(__name__, inspect.currentframe().f_code.co_name, e)

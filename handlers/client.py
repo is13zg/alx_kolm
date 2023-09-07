@@ -17,6 +17,8 @@ import inspect
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from utils.ReviewState import WaitReview
+from aiogram import F
+import random
 
 router = Router()
 
@@ -75,17 +77,32 @@ def form_tlg_menu_items(menu_from_json: list = None, msgs_ids: list = None) -> I
 
 
 
+
+@router.message(WaitReview.GET_REVIEW_PHOTO,F.text.casefold() == "выход")
+async def command_start_handler(message: Message, state: FSMContext) -> None:
+    try:
+        if not message.photo:
+
+            await state.clear()
+            await message.answer(text="Вы вышли в основное меню.")
+            await message.answer(text="<pre>Выберите пособие:</pre>", parse_mode="HTML",
+                                 reply_markup=form_tlg_menu_items(get_needed_menu_from_json("menu0")))
+
+        return
+    except Exception as e:
+        await create_bot.send_error_message(__name__, inspect.currentframe().f_code.co_name, e)
+
 @router.message(WaitReview.GET_REVIEW_PHOTO)
 async def command_start_handler(message: Message, state: FSMContext) -> None:
     try:
         if not message.photo:
             await state.set_state(WaitReview.GET_REVIEW_PHOTO)
-            await message.answer("Пришлите фото/скриншот отзыва чтобы получить подарок!")
+            await message.answer("Пришлите фото/скриншот отзыва чтобы получить подарок! Или напишите ВЫХОД чтобы выйти в меню")
         else:
             await message.answer(text="Фото получено, будет выполнена проверка отзыва.")
             await state.clear()
-            await asyncio.sleep(5)
-            await message.answer(text="Ваш бонус")
+            await asyncio.sleep(random.randint(20,300))
+            await message.answer(text=init_data.answer_json["answer_bonus_tablica"]["text"])
             await message.answer(text="<pre>Выберите пособие:</pre>", parse_mode="HTML",
                                  reply_markup=form_tlg_menu_items(get_needed_menu_from_json("menu0")))
 

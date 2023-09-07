@@ -13,5 +13,8 @@
 	},
 	"answer2.2": {
 		"text": "<a href=\"https://ya.ru\">Смотреть видео</a>.\n"
+	},
+	"answer_bonus_tablica": {
+		"text": "Ваш бонус: <a href=\"http://matheasy.ru/tren/main/?do=6&kol=2&speed=3&divonly=y&typch1=8&ch1ot=1&ch1do=10&typch2=8&ch2ot=1&ch2do=10\">Онлайн трненажер для закрепления таблицы умножения</a>.\n"
 	}
 }
